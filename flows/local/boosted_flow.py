@@ -1,4 +1,5 @@
-from metaflow import FlowSpec, step, card
+from metaflow import FlowSpec, step, card, current
+from metaflow.cards import Table, Markdown, Artifact
 
 
 class BSTFlow(FlowSpec):
@@ -38,13 +39,17 @@ class BSTFlow(FlowSpec):
         bst = xgb.Booster()
         bst.load_model("model.json")
         preds = bst.predict(dtest)
+        self.preds = preds
         self.next(self.end)
 
+    @card
     @step
     def end(self):
         """
         End of flow!
         """
+        current.card.append(Markdown('## Result'))
+        print("Results:", self.preds)
         print("BSTFlow is all done.")
 
 

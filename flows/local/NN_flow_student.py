@@ -79,6 +79,7 @@ class NNFlow(FlowSpec):
             self.model = f.read()
         self.next(self.train)
 
+    @card
     @step
     def train(self):
         """

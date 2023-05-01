@@ -43,11 +43,13 @@ class RF_Flow(FlowSpec):
         self.scores = cross_val_score(self.clf, self.X, self.y, cv=5)
         self.next(self.end)
 
+    @card
     @step
     def end(self):
         """
         End of flow!
         """
+        print("The score from RF model is ", self.scores)
         print("RF_Flow is all done.")
 
 

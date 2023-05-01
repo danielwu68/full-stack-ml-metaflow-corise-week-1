@@ -1,4 +1,5 @@
 from metaflow import FlowSpec, step, card
+import os
 
 
 class TFlow1(FlowSpec):
@@ -40,4 +41,5 @@ class TFlow1(FlowSpec):
 
 
 if __name__ == "__main__":
+    print(f"Current Working Dir: {os.getcwd()}")
     TFlow1()
